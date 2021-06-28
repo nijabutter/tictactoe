@@ -42,7 +42,7 @@ class Game:
         if not self.grid[x][y]:
             self.grid[x][y] = self.getCurrentPlayer()
             self.moves += 1
-            self.currentTurn = 0 if self.currentTurn == 1 else 1
+            self.currentTurn =int(not self.currentTurn)
             winner = self.checkBoard()
             if winner:
                 self.won = True
@@ -85,6 +85,8 @@ class Window:
         result = self.game.makeMove((row, col))
         if result:
             self.textVariable.set(result)
+        else:
+            self.textVariable.set(self.game.getCurrentPlayer() + "'s turn")
         self.updateGrid()
     def loop(self):
         self.root.mainloop()
